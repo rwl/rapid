@@ -18,38 +18,13 @@ Installation
 
 -  Download and install python 3.5 version
 
--  To use MPI with the Windows (implementation of the Message Passing
-   Interface standard for developing and running parallel applications
-   on the Windows platform), one may need to download `MS
-   MPI <https://www.microsoft.com/en-us/download/details.aspx?id=57467>`__
-   and install both .mis and SDK.
+-  To use MPI, please install mpi4py (https://mpi4py.readthedocs.io/en/stable/install.html) 
 
--  Set up environmental variables. For example,
-
-   #. 
-
-      .. raw:: latex
-
-         \path{ C:\Program Files (x86)\Microsoft SDKs\MPI }
-
-   #. 
-
-      .. raw:: latex
-
-         \path{ C:\Program Files\Microsoft MPI\Bin }
-
-   #. For more details,
-      `this <https://stackoverflow.com/questions/14004457/error-loading-mpi-dll-in-mpi4py/57629338#57629338>`__
-      might be helpful.
-
--  Install necessary Python packages.
+-  Install necessary Python packages (numpy, scipy, pandapower, numba).
 
 Citing :math:`rapid`
 --------------------
 
-| We kindly request that publications utilizing :math:`rapid` and/or
-  derived from the use of it cite the following papers and the software
-  itself to express the acknowledgement.
 | Byungkwon Park, Kai Sun, Aleksandar Dimitrovski, Yang Liu, Md Arifin
   Arif, Srikanth Allu, and Srdjan Simunovic, “Performance and Feature
   Improvements in Parareal-based Power System Dynamic Simulation,” *2020
