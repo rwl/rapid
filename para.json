@@ -1,0 +1,15 @@
+{
+  "para": [
+      {
+          "tstart": 0,
+          "tend": 10.0,
+          "ncoarse":  25,
+          "nfine": 250,
+          "coarseop": "trap",
+          "fineop": ""
+      }
+  ]
+}
+
+
+

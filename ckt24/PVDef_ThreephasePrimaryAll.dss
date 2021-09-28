@@ -1,0 +1,8 @@
+
+New Generator.Bus3  phases=3 bus1= sourcebus.1.2.3   kV=230 kW=52000  model=7 Vminpu = 0.8 Xdp = 0.1 Vpu=1.05 maxkvar=60000  minkvar=-45000  Pf=1
+!New Generic5.PVp1udt104-p1uhs0_1247x phases=3 bus1=sourcebus.1.2.3 kV=230 kVA=52000 KW=52000 P_refKW=52000 ctrl_mode=4 QV_flag=1 V_refkVLN=132 Q_refkVAr=0 cc_switch=false kcd=1 kcq=0.5 kqi=0.003 Volt_Trhd=0.04
+
+!New ConstantI.PVp1udt104-p1uhs0_1247x phases=3 bus1=sourcebus.1.2.3 kV=230 kVA=52000 KW=52000 P_refKW=52000 ctrl_mode=4 QV_flag=1 V_refkVLN=132 Q_refkVAr=0 cc_switch=false kcd=1 kcq=0.5 kqi=0.003 Volt_Trhd=0.04
+!New ConstantPQ.PVp1udt104-p1uhs0_1247x phases=3 bus1=sourcebus.1.2.3 kV=230 kVA=52000 KW=52000 P_refKW=52000 ctrl_mode=4 QV_flag=1 V_refkVLN=230 Q_refkVAr=0 cc_switch=false kcd=1 kcq=0.5 kqi=0.003 Volt_Trhd=0.04
+!New ConstantV.PVp1udt104-p1uhs0_1247x phases=3 bus1=sourcebus.1.2.3 kV=230 kVA=52000 KW=52000 P_refKW=52000 ctrl_mode=4 QV_flag=1 V_refkVLN=230 Q_refkVAr=0 cc_switch=false kcd=1 kcq=0.5 kqi=0.003 Volt_Trhd=0.04
+!New InverterModel.Bus3  phases=3 bus1= sourcebus.1.2.3   kV=230 kW=52000  

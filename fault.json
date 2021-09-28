@@ -1,0 +1,15 @@
+{
+  "faults": [
+      {
+          "id": 1,
+          "start": 0.00,
+          "end":  0.0687,
+          "type": "bus",
+          "index": [1],
+          "linetrip": 0
+      }
+  ]
+}
+
+
+

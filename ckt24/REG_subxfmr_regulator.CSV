@@ -1,0 +1,7 @@
+Hour, Sec, ControlIteration, Iterations, LoadMultiplier, Present Tap, Pending Change, Actual Change, Increment, Min Tap, Max Tap
++++ 0 s: Handling TapChange = 0.075
+0, 0.000, 1, 4,   1.00,  1.00000,  0.07500,  0.05000,  0.00625,  0.90000,  1.10000
++++ 0 s: Handling TapChange = 0.025
+0, 0.000, 2, 4,   1.00,  1.05000,  0.02500,  0.01250,  0.00625,  0.90000,  1.10000
++++ 0 s: Handling TapChange = 0.0125
+0, 0.000, 3, 4,   1.00,  1.06250,  0.01250,  0.00625,  0.00625,  0.90000,  1.10000
