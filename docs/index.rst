@@ -1,4 +1,4 @@
-. index::
+.. index::
    pair: RAPID;Home
 
 Welcome to RAPID's documentation!
