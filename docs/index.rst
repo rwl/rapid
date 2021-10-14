@@ -1,17 +1,11 @@
-.. index::
-   pair: rapid;Home
+. index::
+   pair: RAPID;Home
 
-Welcome to rapid's documentation!
+Welcome to RAPID's documentation!
 ======================================
 
-This document describes the advanced power system dynamic simulation
-toolbox, :math:`rapid`, incorporating “parallel-in-time” (Parareal)
-algorithm that has a great potential to improve the computational
-performance of time-domain simulation significantly. The simulation
-toolbox is implemented in the Python programming language. :math:`rapid`
-is aimed at achieving an ambitious goal of facilitating
-“faster-than-real-time simulation” for predicting large-scale power
-system dynamic behaviors.
+This document describes an open source power system simulation toolbox: Resilient Adaptive Parallel sImulator for griD (RAPID), a package of Python codes that implements an advanced power system dynamic simulation framework.  RAPID utilizes and incorporates emerging solution techniques; a novel "parallel-in-time" (Parareal) algorithm, adaptive model reduction, and semi-analytical solution methods. Moreover, the whole simulation process for the transmission network has been coupled with OpenDSS, a widely used open-source distribution system simulator, to enable the co-simulation of integrated transmission and distribution systems. RAPID has a great potential to significantly improve the computational performance of time-domain simulation (i.e., solving a large number of nonlinear power system DAEs) and achieve an ambitious goal of facilitating "faster-than-real-time simulation" for predicting large-scale power system dynamic behaviors.
+
 
 Installation
 ------------
@@ -22,7 +16,7 @@ Installation
 
 -  Install necessary Python packages (numpy, scipy, pandapower, numba).
 
-Citing :math:`rapid`
+Citing :math:`RAPID`
 --------------------
 
 | Byungkwon Park, Kai Sun, Aleksandar Dimitrovski, Yang Liu, Md Arifin
@@ -47,7 +41,7 @@ The development team is composed of researchers from:
 * University of Tennessee, Knoxville
 * University of Central Florida, Orlando 
 
-If you have found :math:`rapid` to be valuable, please feel free to
+If you have found :math:`RAPID` to be valuable, please feel free to
 contact us for potential collaborations and consider supporting the
 project. Any supports and contributions from the community allow us to
 improve the features of this open-source tool and investigate emerging
@@ -55,10 +49,7 @@ techniques.
 
 Data
 ====
-
-Three test networks, New England, Polish, and Eastern Interconnection,
-are available as a small, large, extra large-scale test network,
-respectively. Each test network data contains the dynamic data and
+Two test networks, New England and Polish, are available as a small and large test network, respectively. Each test network data contains the dynamic data and
 network data.
 
 Dynamic Data
@@ -136,8 +127,8 @@ Network Data
 ------------
 
 The network data contains the network information (mpc) which follows
-the format of MATPOWER :raw-latex:`\cite{Zimmerman2011}`, which is used
-to construct the admittance matrix (:math:`Y_{bus}`) and solve the power
+the format of MATPOWER :cite:`\Zimmerman2011`, which is used
+to construct the admittance matrix (:math:`Y_{bus`) and solve the power
 flow problem. The system structure is specified by two tables, **bus**
 and **branch**.
 
@@ -225,7 +216,7 @@ Modeling
 
 :math:`NAME` employs the standard dynamic models used for power system
 transient and dynamic simulations. The dummy coil model
-:raw-latex:`\cite{Padiyar2002}` is described first, and then the 6th
+:cite:`Padiyar2002` is described first, and then the 6th
 order generator model. The analysis of transient stability of power
 systems involves the computation of the nonlinear dynamic response to
 disturbances (typically a transmission network fault) followed by the
@@ -239,14 +230,14 @@ algebraic equations (DAEs), which may be represented as:
    \dot{\pmb{x}}= \pmb{f(x,V)} \\
    \pmb{I} = \pmb{g(x,V)}\end{aligned}
 
- where :math:`\pmb{x}` is the state vector of the system;
+where :math:`\pmb{x}` is the state vector of the system;
 :math:`\pmb{I}` is the current injection vector in the network frame;
 :math:`\pmb{V}` is the bus voltage vector in the network frame;
 :math:`\pmb{f}` and :math:`\pmb{g}` represent differential and algebraic
 equation vector, respectively.
 
 The differential equations include the synchronous generators (2.2
-model) :raw-latex:`\cite{Dandeno2003}`, and the associated control
+model) :cite:`Dandeno2003`, and the associated control
 systems (e.g., excitation and prime mover governors). The algebraic
 equations include the stator algebraic equations (including axes
 transformation) and the network equations.
@@ -258,8 +249,8 @@ This section illustrates IEEE Model 2.2 with two damper windings on the
 q-axis and one damper winding on the d-axis along with the field winding
 for the synchronous generators, IEEE Type 1 excitation system, and first
 order turbine-governor models. Saturation is represented using standard
-saturation factors approach :raw-latex:`\cite{KundurBaluLauby1994}`. The
-dummy coil approach :raw-latex:`\cite{Padiyar2002}` is used to interface
+saturation factors approach :cite:`KundurBaluLauby1994`. The
+dummy coil approach :cite:`Padiyar2002` is used to interface
 the generator to the network as a current source. Loads are modelled as
 aggregate static loads employing polynomial representation (ZIP load).
 The complete model has 15 state variables for each generator including
@@ -281,7 +272,7 @@ Synchronous Generator Model 2.2
    \dot{X}_{ad}^{''} & = \frac{1}{T_{d}} (-X_{ad}^{''} + F_d) \\ 
    \dot{X}_{aq}^{''} & = \frac{1}{T_{q}} (-X_{aq}^{''} + F_q)  \end{aligned}
 
- where :math:`\delta` is the rotor angle; :math:`\omega` is the slip
+where :math:`\delta` is the rotor angle; :math:`\omega` is the slip
 speed; :math:`\psi_f, \psi_h` are the d-axis flux linkages;
 :math:`\psi_g, \psi_k` are the q-axis flux linkages;
 :math:`E^{\text{dum}}` is a dummy coil state variable for transient
@@ -298,9 +289,10 @@ Turbine Governor
 
    \begin{aligned}
    \dot{T}_{m} & = \frac{1}{T_{ch}} (-T_{m} + P_{sv} )  \\ 
-   \dot{P}_{sv} & = \frac{1}{T_{sv}} (-P_{sv} + P_c - \frac{1}{R_d}\omega ) \end{aligned}
+   \dot{P}_{sv} & = \frac{1}{T_{sv}} (-P_{sv} + P_c - \frac{1}{R_d}\omega ) 
+   \end{aligned}
 
- where :math:`T_m` represents the mechanical torque; :math:`P_{sv}`
+where :math:`T_m` represents the mechanical torque; :math:`P_{sv}`
 represents the turbine valve opening; :math:`P_c` is the power command.
 
 IEEE Type-1 Excitation
@@ -319,9 +311,10 @@ IEEE Type-1 Excitation
    0 &  \text{if $V_R = V_R^{\text{min}}$ and $F_R < 0$} \\
    \frac{1}{T_{A}} \Big(-V_{R} + K_A\big(V^{\text{ref}}-V_1  - (\frac{K_F}{T_F}E_{fd}-V_2)\big)  
    \Big) & \text{Otherwise} 
-   \end{cases} \end{aligned}
+   \end{cases} 
+   \end{aligned}
 
- where :math:`E_{fd}` is the field voltage; :math:`V_2` is the feedback
+where :math:`E_{fd}` is the field voltage; :math:`V_2` is the feedback
 voltage; :math:`V_1` is the sensed terminal voltage; :math:`V_R` is the
 regulator voltage; :math:`V_T` is the terminal voltage of generator.
 That is, :math:`V_T = |V_{bus}|`. Here, :math:`F_R` represents
@@ -348,25 +341,24 @@ Similar to the dummy coil approach, this is an approximate treatment,
 but the degree of approximation can be controlled directly by choosing
 :math:`T_{Lr,Li}` appropriately. It is found that reasonable accuracy
 can be obtained if :math:`T_{Lr,Li}` is about 0.01\ :math:`s`. The main
-advantage of this method is its simplicity and modularity. Fig.
-`[fig:gen] <#fig:gen>`__ represents the structure of the synchronous
+advantage of this method is its simplicity and modularity. Fig.:numref:`fig-gen`.
+represents the structure of the synchronous
 generator model which describes the aforementioned differential
 equations.
 
-.. raw:: latex
+.. _fig-gen:
 
    \centering
 
-.. figure:: gen.pdf
+.. figure:: _static/gen.png
    :alt: Synchronous generator model with relevant controllers
-   :name: fig:gen
    :width: 5in
    :height: 3in
 
    Synchronous generator model with relevant controllers
 
 Further details regarding the derivation of models can be found in
-:raw-latex:`\cite{Padiyar2008}`. Notice that the power system stabilizer
+:cite:`Padiyar2008`. Notice that the power system stabilizer
 is not included in this version.
 
 Algebraic Equations
@@ -417,7 +409,7 @@ Stator Algebraic Equation
    F_{d} & = \frac{1}{\frac{1}{X_{ads}} + \frac{1}{X_{fl}} + \frac{1}{X_{hl}}} = X_{ad}^{''}\\
    F_{q} & = \frac{1}{\frac{1}{X_{aqs}} + \frac{1}{X_{gl}} + \frac{1}{X_{kl}}} = X_{aq}^{''} \end{aligned}
 
- where :math:`E_q^{''}, E_d^{''}` are the q-axis and d-axis subtransient
+where :math:`E_q^{''}, E_d^{''}` are the q-axis and d-axis subtransient
 voltage; :math:`X_q^{''}, X_d^{''}` are the saturated q-axis and d-axis
 subtransient reactance; :math:`T_e` is the electrical torque;
 :math:`\psi_{ad}, \psi_{aq}` are the d-axis and q-axis component of
@@ -458,7 +450,7 @@ Load Algebraic Equation
    F_r & = real(I_L) \\
    F_i & = imag(I_L) \end{aligned}
 
- where :math:`V_0` is the nominal load bus voltage magnitude;
+where :math:`V_0` is the nominal load bus voltage magnitude;
 :math:`I_L` in general represents load currents, which is related to
 load power; :math:`P_{L0}, Q_{L0}` are nominal values of active and
 reactive components of load powers at nomial voltage :math:`V_{0}`; The
@@ -474,18 +466,15 @@ components of load powers are represented separately as static voltage
 dependent models. As illustrated before, the values of :math:`F_r` and
 :math:`F_i` are substituted in the load dynamic equation to avoid the
 iterative solution. Similarly, further details regarding the derivation
-can be found in :raw-latex:`\cite{Padiyar2008}`. The example of the IEEE
-New England test network is shown in Fig.
-`[fig:network] <#fig:network>`__.
+can be found in :cite:`Padiyar2008`. The example of the IEEE
+New England test network is shown in Fig. :numref:`fig-network`.
 
-.. raw:: latex
+.. _fig-network:
 
    \centering
 
-.. figure:: network.pdf
-   :alt: Example of the New England test network: 39-bus and
-   10-generator
-   :name: fig:network
+.. figure:: _static/network.png
+   :alt: Example of the New England test network: 39-bus and 10-generator
    :width: 5in
    :height: 3.5in
 
@@ -552,7 +541,7 @@ Synchronous Generator Initial Conditions
             v_q + \textbf{j}v_d & = V_{g,0}e^{-\textbf{j}\delta_0} \\
             \psi_d & = v_q \\
             \psi_d & = -v_d 
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
@@ -560,7 +549,7 @@ Synchronous Generator Initial Conditions
         \begin{aligned}
             i_{f,0} & = \frac{\psi_d - X_di_d}{X_{ad}} \\
             E_{fd,0} & = X_{ads}i_{f,0} 
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
@@ -568,7 +557,7 @@ Synchronous Generator Initial Conditions
         \begin{aligned}
             \psi_{ad} & = \psi_{d} - X_li_d \\
             \psi_{aq} & = \psi_{q} - X_li_q  
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
@@ -578,14 +567,14 @@ Synchronous Generator Initial Conditions
             \psi_{h,0} & = \psi_{ad} \\
             \psi_{g,0} & = \psi_{aq} \\
             \psi_{k,0} & = \psi_{aq} 
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
 
         \begin{aligned}
             T_{m,0} & = P_{g,0}
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
@@ -594,28 +583,28 @@ Synchronous Generator Initial Conditions
             E_q^{''} & = X_{ad}^{''} \Big( \frac{\psi_f}{X_{fl}} + \frac{\psi_h}{X_{hl}}  \Big) \\
             E_d^{''} & = -X_{ad}^{''} \Big( \frac{\psi_g}{X_{gl}} + \frac{\psi_k}{X_{kl}}  \Big) \\
             T_{m0} & = E_q^{''}i_q + E_d^{''}i_d + i_di_q(X_{ad}^{''} - X_{aq}^{''})
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
 
         \begin{aligned}
             E^{\text{dum}}_0 & = -(X_{q}^{''} - X_{d}^{''})i_q
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
 
         \begin{aligned}
             Y_{bus}(gen,gen) & = Y_{bus}(gen,gen) + \frac{1}{R_a(gen) + \textbf{j}X_d^{''}(gen)}
-            \end{aligned}
+        \end{aligned}
    | 
 
      .. math::
 
         \begin{aligned}
             Y_{bus}(load,load) & = Y_{bus}(load,load) + \frac{P_{L0}(load) - \textbf{j}Q_{L0}(load)}{|V(load)|^2}
-            \end{aligned}
+        \end{aligned}
 
 Then, setting
 :math:`\omega_0=0, X_{ad0}^{''}=X_{ad}^{''}, X_{aq0}^{''}=X_{aq}^{''}`,
@@ -637,7 +626,7 @@ Excitation System Initial Conditions
               V_{1,0} & = |V_{g,0}| \\
               V_{RR} & = (K_E + A_Ee^{B_EE_{fd,0}})E_{fd,0} \\
               V_{R,0} & = K_A \big( \frac{V_{RR}}{K_A} - \frac{K_F}{T_F}E_{fd,0} - V_{2,0} \big)  
-              \end{aligned}
+      \end{aligned}
 
 Governor Initial Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -703,49 +692,6 @@ The advantages of the partitioned approach with explicit integration are
 programming flexibility, and simplicity, reliability, and robustness.
 Its disadvantage is numerical instability.
 
-:math:`\textsf{sequential\_fine.py}`
-------------------------------------
-
-| In Python, a dynamic simulation using the sequential approach with the
-  RK-4 method is executed by calling sequential_fine.py. An example
-  command line to run the simulation is following:
-| ``python sequential_fine.py 0 0.2 –dtFine 0.002 –debug 1 -o ofile.csv –nsave=5 –fault fault.json``
-| Necessary arguments are
-
--  0: start time.
-
--  0.2: end time.
-
--  | ``–fault``: read the fault.json file which has defined fault
-     dictionaries.
-
-Optional arguments are
-
--  ``–dtFine``: time step size.
-
--  ``–debug``: debug printout. The default is 1 which is on.
-
--  ``-o``: write results to ofile.csv.
-
--  ``–nsave``: the number of increments of solution for times. The
-   default is 10.
-
-In the o.csv file, results are formatted in the csv form. The first
-column corresponds to the simulation time and other columns correspond
-to the solution values of state and algebraic variables. Each row
-corresponds to each time step.
-
-.. math::
-
-   \begin{aligned}
-   \begin{bmatrix}[c|c|c|c]
-   Col1 & Col2 & \cdots & ColM  \\ \hline
-   t_0 & Sol_1(t_0) & \cdots & Sol_{M-1}(t_0) \\ 
-   t_1 & Sol_1(t_1) & \cdots & Sol_{M-1}(t_1) \\
-   \cdots & \cdots & \cdots & \cdots \\
-   t_N & Sol_1(t_N) & \cdots & Sol_{M-1}(t_N) \\
-   \end{bmatrix}\end{aligned}
-
 .. raw:: latex
 
    \newpage
@@ -753,10 +699,10 @@ corresponds to each time step.
 Parareal Algorithm
 ==================
 
-In addition to the aforementioned sequential approach which is the
-widely used standard solution approach in power industries to solve DAEs
-of time-domain simulation, :math:`NAME` employs the Parareal algorithm
-:raw-latex:`\cite{Gurrala2016}` that belongs to the class of temporal
+To implement the aforementioned partitioned-explicit solution process, 
+which is widely applied in power system commercial simulation softwares, 
+:math:`RAPID` employs the Parareal algorithm
+:cite:`Gurrala2016` that belongs to the class of temporal
 decomposition methods and can highly utilize high-performance parallel
 computing platforms. It has become popular in recent years for long time
 transient simulations and demonstrated its potential to reduce the
@@ -820,9 +766,9 @@ denote the corrected coarse solution.
       \begin{aligned}
           x_{n}^{*,0} = x^{\text{coarse},0}_{n} = C_{\Delta t}(x_{n-1}^{*,0}) & \quad n = [1,,,.,N] \\
           & \text{Set} \quad  x^{*,1}_{0} = x^{*,0}_{0}
-          \end{aligned}
+      \end{aligned}
 
-    where the superscript denotes the iteration count and
+   where the superscript denotes the iteration count and
    :math:`x^{*,0}_{0}` is the given initial point at :math:`T=0`.
 
 #. Iteration starts :math:`k=1`. Propagate fine solution in parallel
@@ -833,9 +779,9 @@ denote the corrected coarse solution.
 
       \begin{aligned}
           x^{\text{fine},k}_{n} = F_{\delta t}(x_{n-1}^{*,k-1}) \quad n = [1,,,.,N]
-          \end{aligned}
+      \end{aligned}
 
-    where :math:`x^{\text{fine},k}_{n}` denotes the solution at
+   where :math:`x^{\text{fine},k}_{n}` denotes the solution at
    :math:`t_n`.
 
 #. Update the coarse solution in serial
@@ -848,7 +794,7 @@ denote the corrected coarse solution.
           \label{eq:update_coarse}
           x^{\text{coarse},k}_{n} & = C_{\Delta t}(x_{n-1}^{*,k}) \\ 
           x^{*,k}_{n} & = x^{\text{coarse},k}_{n} +  x^{\text{fine},k}_{n} - x^{\text{coarse},k-1}_{n} 
-          \end{aligned}
+      \end{aligned}
 
     end
 
@@ -883,22 +829,21 @@ fine operator, 2) the use of a different, but faster solver than that of
 the fine operator, and 3) the use of a simpler or reduced system model
 based on the properties of the underlying physics governing the behavior
 of the system. The graphical structure of the Parareal algorithm is
-illustrated in Fig. `[fig:parareal] <#fig:parareal>`__.
+illustrated in Fig. :numref:`fig-parareal`.
 
-.. raw:: latex
+.. _fig-parareal:
 
    \centering
 
-.. figure:: parareal.pdf
+.. figure:: _static/parareal.png
    :alt: Parareal algorithm
-   :name: fig:parareal
    :width: 4.5in
    :height: 2.5in
 
    Parareal algorithm
 
 For the Parareal algorithm, this toolbox employs the distributed
-Parareal algorithm :raw-latex:`\cite{Aubanel2011}` that considers the
+Parareal algorithm :cite:`Aubanel2011` that considers the
 efficient scheduling of tasks, which is an improved version of the usual
 Parareal algorithm from a practical perspective. In the distributed
 algorithm, the coarse propagation is also distributed across all
@@ -925,8 +870,7 @@ simulation time period.
 :math:`\textsf{para\_real.py}`
 ------------------------------
 
-| In Python, a dynamic simulation using the sequential approach with the
-  RK-4 method is executed by calling sequential_fine.py. An example
+| The main python code to runt RAPID is para_real.py. An example
   command line to run the simulation is following:
 | ``mpiexec -n 50 python para_real.py 0.0 0.2 –nCoarse 10 –nFine 100 –tol 0.01 –tolcheck maxabs –debug 1 -o result.csv``
 | Necessary arguments are
@@ -986,7 +930,7 @@ Standard Numerical Iteration Method
 Midpoint-Trapezoidal Predictor-Corrector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Based on the results in :raw-latex:`\cite{Gurrala2016}`, the following
+Based on the results in :cite:`Gurrala2016`, the following
 Midpoint-Trapezoidal predictor-corrector (Trap) method is selected as
 the standard numerical predictor-corrector method to be used as the
 coarse operator of Parareal algorithm. This Trap method serves as the
@@ -1044,16 +988,16 @@ online stage without iterations. SAS methods have been widely applied to
 solve nonlinear ordinary differential equations (ODEs) and DAE problems
 in the applied sciences and engineering [23]. The SAS-based approach is
 a powerful analytical technique for strongly nonlinear problems. It can
-provide a rapid convergence to a solution, and thus has shown the
+provide a RAPID convergence to a solution, and thus has shown the
 potential for fast power system simulations.
 
 This toolbox utilizes two promising time-power series-based SAS methods;
-Adomian decomposition method (ADM) :raw-latex:`\cite{Gurrala2017}`,
-:raw-latex:`\cite{Duan2012}` and Homotopy Analysis method (HAM)
-:raw-latex:`\cite{Liao2003}`, :raw-latex:`\cite{Dinesha2019}`. In the
+Adomian decomposition method (ADM) :cite:`Gurrala2017`,
+:cite:`Duan2012` and Homotopy Analysis method (HAM)
+:cite:`Liao2003`, :cite:`Dinesha2019`. In the
 time-power series-based SAS methods, the true solution :math:`x(t)` to
 the initial value problem of `[eq:IVP] <#eq:IVP>`__ can be analytically
-represented as an infinite series :raw-latex:`\cite{Wang2019}`:
+represented as an infinite series :cite:`Wang2019`:
 
 .. math::
 
@@ -1639,8 +1583,8 @@ Hence, one can obtain :math:`x_i(t)` by solving
 `[eq:HAM12] <#eq:HAM12>`__, one after the other in order. Notice that we
 select the polynomial as the base function, and thus :math:`H(t)` is
 uniquely defined as :math:`H(t)=1` based on
-:raw-latex:`\cite{Liao2009}`. Interestingly, it has been demonstrated in
-:raw-latex:`\cite{Liao2003}` that the ADM described in the previous
+:cite:`Liao2009`. Interestingly, it has been demonstrated in
+:cite:`Liao2003` that the ADM described in the previous
 section, if using polynomial as the base function, is a special case of
 the HAM with :math:`c`\ :math:`=`\ :math:`-1`. Likewise, the approximate
 solution of the HAM can be obtained by the truncated series
@@ -1957,7 +1901,7 @@ Moreover, since the proposed approach to derive power series terms for
 each method fully considers the coupling variables among devices such as
 turbine, governor, generator and excitation, it is more accurate than
 and complements the approach described in
-:raw-latex:`\cite{Gurrala2017}` and :raw-latex:`\cite{Dinesha2019}` that
+:cite:`Gurrala2017` and :cite:`Dinesha2019` that
 have ignored coupling variables among devices.
 
 .. raw:: latex
@@ -1989,8 +1933,8 @@ Simulation Results
 This section presents numerical case studies investigating the Parareal
 algorithm for power system dynamic simulations. We consider two test
 networks, the New England 10-generator 39-bus system
-:raw-latex:`\cite{Padiyar2002}` as a small test network, and the Polish
-327-generator 2383-bus system :raw-latex:`\cite{Zimmerman2011}` as a
+:cite:`Padiyar2002` as a small test network, and the Polish
+327-generator 2383-bus system :cite:`Zimmerman2011` as a
 large test network. Simulations are performed on Intel Core i7 2.59 GHz
 processors. The following disturbances are considered: 3-phase faults on
 buses with 4 cycles fault duration; 3-phase faults on branches with 4
@@ -2109,21 +2053,13 @@ testcases to a convenient place.
 Soution Approach
 ----------------
 
-#. | ``sequential_fine.py``
-   | Main python code to run the simulation using the standard
-     sequential solution approach. As an example, the simulation can be
-     run from the command line with following options.
-   | ``python sequential_fine.py 0 0.2 –dtFine 0.002 –debug 1 -o ofile.csv –nsave=5 –fault fault.json``
-
 #. | ``para_real.py``
    | Main python code to run the simulation using Parareal algorithm. As
      an example, the simulation can be run from the command line with
-     following options.
-   | ``python sequential_fine.py 0 0.2 –dtFine 0.002 –debug 1 -o ofile.csv –nsave=5 –fault fault.json``
-   | How to read output profile? As an example, use the following in the
-     command line to see the profile of the first processor.
-   | ``snakeviz profile_out.1``
-   | To this end, one may need to install the “snakeviz" package.
+     following arguments.
+   | ``mpiexec -n 50 python para_real.py 0 1 --nCoarse 10 --nFine 100 --tol 0.01 --tolcheck maxabs --debug 1 --fault fault.json --dist dist.json -o result.csv``
+   | This runs RAPID on 50 processors, which corresponds to 50 subintervals, with defined time increments (i.e., 10 time increments for the coarse operator in each of 50 subintervals and 100 time increments for the fine operator in each of 50 subintervals), using tolerance of 0.01 for maximum absolute value of the difference between iterations, reads fault scenarios defined in the fault.json file, includes the distribution network defined in the dist.json file, and then saves solutions into the result.csv file.
+
 
 Function Descriptions
 ---------------------
@@ -2202,15 +2138,11 @@ Scipy in the Python programming language.
 
 #. | ``Data_NE``
    | The IEEE New England 10-generator 39-bus test network
-     :raw-latex:`\cite{Padiyar2002}` as a small-scale test network.
+     :cite:`Padiyar2002` as a small-scale test network.
 
 #. | ``Data_POLISH``
    | The IEEE Polish 327-generator 2383-bus system
-     :raw-latex:`\cite{Zimmerman2011}` as a large-scale test network.
-
-#. | ``Data_EI.mat``
-   | The East Interconnection test network [] as an extra large-scale
-     test network.
+     :cite:`Zimmerman2011` as a large-scale test network.
 
 SAS method options
 ------------------
@@ -2409,7 +2341,7 @@ This is never printed
    +-----------------------------------+-----------------------------------+
    | :math:`\mathcal{E} \subseteq \mat | Set of lines in the transmission  |
    | hcal{N} \times \mathcal{N} \times | network                           |
-   |  \mathcal{C}`                     |                                   |
+   | \mathcal{C}`                      |                                   |
    +-----------------------------------+-----------------------------------+
    | :math:`\mathcal{E}_i \subseteq \m | Subset of lines                   |
    | athcal{E}`                        | :math:`\mathcal{E}` belonging to  |
@@ -2420,3 +2352,5 @@ This is never printed
    | {G}`                              | :math:`\mathcal{G}` at bus        |
    |                                   | :math:`i \in \mathcal{N}`         |
    +-----------------------------------+-----------------------------------+
+
+.. bibliography:: parareal.bib
