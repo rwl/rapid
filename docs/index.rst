@@ -340,13 +340,13 @@ Similar to the dummy coil approach, this is an approximate treatment,
 but the degree of approximation can be controlled directly by choosing
 :math:`T_{Lr,Li}` appropriately. It is found that reasonable accuracy
 can be obtained if :math:`T_{Lr,Li}` is about 0.01\ :math:`s`. The main
-advantage of this method is its simplicity and modularity. Fig.:numref:`fig-gen`.
+advantage of this method is its simplicity and modularity. :numref:`fig-gen`.
 represents the structure of the synchronous
 generator model which describes the aforementioned differential
 equations.
 
-.. _fig-gen:
 .. figure:: _static/gen.png
+   :name: fig-gen
    :alt: Synchronous generator model with relevant controllers
    :width: 5in
    :height: 3in
@@ -463,10 +463,10 @@ dependent models. As illustrated before, the values of :math:`F_r` and
 :math:`F_i` are substituted in the load dynamic equation to avoid the
 iterative solution. Similarly, further details regarding the derivation
 can be found in :cite:`Padiyar2008`. The example of the IEEE
-New England test network is shown in Fig. :numref:`fig-network`.
+New England test network is shown in :numref:`fig-network`.
 
-.. _fig-network:
 .. figure:: _static/network.png
+   :name: fig-network
    :alt: Example of the New England test network: 39-bus and 10-generator
    :width: 5in
    :height: 3.5in
@@ -822,10 +822,10 @@ fine operator, 2) the use of a different, but faster solver than that of
 the fine operator, and 3) the use of a simpler or reduced system model
 based on the properties of the underlying physics governing the behavior
 of the system. The graphical structure of the Parareal algorithm is
-illustrated in Fig. :numref:`fig-parareal`.
+illustrated in :numref:`fig-parareal`.
 
-.. _fig-parareal:
 .. figure:: _static/parareal.png
+   :name: fig-parareal
    :alt: Parareal algorithm
    :width: 4.5in
    :height: 2.5in
@@ -1951,7 +1951,7 @@ Validation of Parareal Algorithm
 Results with the New England 10-Generator 39-Bus System
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Fig. :numref:`fig-nedelta`_:numref:`fig-neslip` shows simulation results of Parareal
+:numref:`fig-nedelta`-:numref:`fig-neslip` shows simulation results of Parareal
 algorithm for the :math:`10s` simulation with the New England system.
 This analysis uses 10 sub-intervals for the coarse operators in each
 processor, and the true solution is obtained using the standard
@@ -1963,28 +1963,28 @@ with all three coarse operators. We have checked this convergence for
 other variables and disturbances to validate the convergence of Parareal
 algorithm.
 
-.. _fig-nedelta:
 .. figure:: _static/ne_delta.png
+   :name: fig-nedelta
 
-.. _fig-neslip:
 .. figure:: _static/ne_slip.png
+   :name: fig-neslip
 
 Results with the Polish System, 327-Generator 2383-Bus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To further evaluate the performance of the Parareal algorithm, we have
 considered the large Polish system. The simulation setup is the same as
-the one used in Section `7.1.1 <#sec:7.1.1>`__. Fig. :numref:`fig-pdelta`_:numref:`fig-pslip`
-`[fig:p] <#fig:p>`__ shows the convergence of Parareal algorithm for the
+the one used in Section `7.1.1 <#sec:7.1.1>`__. :numref:`fig-pdelta`-:numref:`fig-pslip`
+shows the convergence of Parareal algorithm for the
 :math:`10s` simulation. Similarly, we have also checked this convergence
 for other variables and disturbances to validate the convergence of
 Parareal algorithm for the Polish system.
 
-.. _fig-pdelta:
 .. figure:: _static/p_delta.png
+   :name: fig-pdelta
 
-.. _fig-pslip:
 .. figure:: _static/p_slip.png
+   :name: fig-pslip
 
 Acknowledgments
 ===============
@@ -2147,7 +2147,7 @@ as follows:
    \begin{aligned}
    R(h) = (N[x^{\text{HAM}}(t)])^2\end{aligned}
 
- where :math:`x^{\text{HAM}}(t)` is a semi-analytical solution obtained
+where :math:`x^{\text{HAM}}(t)` is a semi-analytical solution obtained
 from the HAM. Then, the optimal value of :math:`h` is given by solving
 the following nonlinear algebraic equation
 
@@ -2212,7 +2212,7 @@ Then, plug into :math:`N(h)`.
    \begin{aligned}
    N(h) = \dot{T}_{m}^{HAM}  - \frac{1}{T_{ch}}(-T_m^{HAM} +P_{sv,0}) = 0\end{aligned}
 
- Therefore,
+Therefore,
 
 .. math::
 
@@ -2276,8 +2276,6 @@ Governor Model
 .. raw:: latex
 
    \bibliographystyle{abbrv}
-
-This is never printed
 
 .. raw:: latex
 
