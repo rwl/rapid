@@ -214,10 +214,9 @@ and **branch**.
 Modeling
 ========
 
-:math:`NAME` employs the standard dynamic models used for power system
-transient and dynamic simulations. The dummy coil model
-:cite:`Padiyar2002` is described first, and then the 6th
-order generator model. The analysis of transient stability of power
+:math:`RAPID` employs the standard dynamic models used for power system
+transient and dynamic simulations. The first version of PAPID incorporates 
+the dummy coil model :cite:`Padiyar2002`. The analysis of transient stability of power
 systems involves the computation of the nonlinear dynamic response to
 disturbances (typically a transmission network fault) followed by the
 isolation of the faulted element by protective relaying. The resulting
@@ -331,7 +330,7 @@ Load Dynamic
 
 In this differential equation, the non-linear algebraic equations are
 converted into a combination of fast acting differential equations and
-linear algebraic equations. The algebraic equations are made functions
+linear algebraic equations. The algebraic equations are functions
 of the “dummy” states of the fast acting differential equations. The
 time constants :math:`T_{Lr,Li}` are chosen to be small, which implies
 that :math:`I_{Ld/Li} \approx F_{r,i}`, except for a short while after a
@@ -347,9 +346,6 @@ generator model which describes the aforementioned differential
 equations.
 
 .. _fig-gen:
-
-   \centering
-
 .. figure:: _static/gen.png
    :alt: Synchronous generator model with relevant controllers
    :width: 5in
@@ -470,9 +466,6 @@ can be found in :cite:`Padiyar2008`. The example of the IEEE
 New England test network is shown in Fig. :numref:`fig-network`.
 
 .. _fig-network:
-
-   \centering
-
 .. figure:: _static/network.png
    :alt: Example of the New England test network: 39-bus and 10-generator
    :width: 5in
@@ -832,9 +825,6 @@ of the system. The graphical structure of the Parareal algorithm is
 illustrated in Fig. :numref:`fig-parareal`.
 
 .. _fig-parareal:
-
-   \centering
-
 .. figure:: _static/parareal.png
    :alt: Parareal algorithm
    :width: 4.5in
@@ -859,9 +849,10 @@ Parareal algorithm can be given as:
 .. math::
 
    \begin{aligned}
-   t^{\text{ideal}} = T_c + \frac{k}{N}(T_f + T_c)\end{aligned}
+   t^{\text{ideal}} = T_c + \frac{k}{N}(T_f + T_c)
+   \end{aligned}
 
- where :math:`N` and :math:`k` represent the number of processors used
+where :math:`N` and :math:`k` represent the number of processors used
 in the fine operator and the number of Parareal iterations required for
 convergence, respectively; :math:`T_c` and :math:`T_f` refer to the
 coarse and fine propagation times, respectively over the whole
@@ -904,7 +895,7 @@ corresponds to each time step.
 .. math::
 
    \begin{aligned}
-   \begin{bmatrix}[c|c|c|c]
+   \begin{bmatrix}
    Col1 & Col2 & \cdots & ColM  \\ \hline
    t_0 & Sol_1(t_0) & \cdots & Sol_{M-1}(t_0) \\ 
    t_1 & Sol_1(t_1) & \cdots & Sol_{M-1}(t_1) \\
@@ -1005,7 +996,7 @@ represented as an infinite series :cite:`Wang2019`:
    \label{eq:SAS1}
    x(t) = \sum_{i=0}^{\infty} a_i (t-t_0)^i = a_0 + a_1(t-t_0) + \cdots\end{aligned}
 
- where :math:`t_0` represents the initial time; :math:`a_0` indicates
+where :math:`t_0` represents the initial time; :math:`a_0` indicates
 the initial state :math:`x_0`; and :math:`a_i` for :math:`i \geq 1`
 depends on :math:`a_0` and system parameters. The SAS method
 approximates the solution :math:`x(t)` by truncating higher order terms
@@ -1017,7 +1008,7 @@ of the true solution `[eq:SAS1] <#eq:SAS1>`__ as follows:
    \label{eq:SAS2}
    x(t) \approx x_{SAS}^{m}(t) = \sum_{i=0}^{m} a_i (t-t_0)^i \end{aligned}
 
- where :math:`m` is the order of the SAS :math:`x_{SAS}^{m}(t)`.
+where :math:`m` is the order of the SAS :math:`x_{SAS}^{m}(t)`.
 
 Notice that the basic idea of SAS methods is to shift the computational
 burden of deriving an approximate but analytical solution, which
@@ -1043,7 +1034,7 @@ nonlinear ordinary differential equation (ODE) in the following form:
    \label{eq:ADM0}
    Lx = -Rx - N(x) + g\end{aligned}
 
- where :math:`L = \frac{d}{dt}` and :math:`L^{-1} = \int_{0}^{t}dt`;
+where :math:`L = \frac{d}{dt}` and :math:`L^{-1} = \int_{0}^{t}dt`;
 :math:`x` is the state variable of the system; :math:`R` and :math:`N`
 are the linear and nonlinear operator, respectively; and :math:`g` is
 the constant term. One should identify the highest differential
@@ -1056,7 +1047,7 @@ this, one might get the following to solve for :math:`x`:
    \label{eq:ADM1}
    x = x_0 + L^{-1}g - L^{-1}Rx - L^{-1}N(x) \end{aligned}
 
- where the inverse operator can be regarded as
+where the inverse operator can be regarded as
 :math:`L^{-1}=\int_{0}^{t}dt` and :math:`x_0` is the given initial
 condition. Now, assume that the solution :math:`x(t)` can be presented
 as an infinite series of the form:
@@ -1066,7 +1057,7 @@ as an infinite series of the form:
    \begin{aligned}
    x(t) = \sum_{n=0}^{\infty} x_{n}(t)  \end{aligned}
 
- and then decompose the nonlinear operator :math:`N(x)` into infinite
+and then decompose the nonlinear operator :math:`N(x)` into infinite
 series:
 
 .. math::
@@ -1075,7 +1066,7 @@ series:
    \label{eq:ADM2}
    N(x) = \sum_{n=0}^{\infty} A_{n}\end{aligned}
 
- where :math:`A_{n}` are called the Adomain polynomials. Suppose the
+where :math:`A_{n}` are called the Adomain polynomials. Suppose the
 nonlinear function :math:`N(x) = f(x)`. Adomian polynomials are obtained
 using the following formula:
 
@@ -1084,7 +1075,7 @@ using the following formula:
    \begin{aligned}
    A_{n}(x_0,x_1,x_2,...,x_n) = \frac{1}{n!}\Big[\frac{d^n}{d\lambda^n}\sum_{\infty}^{i=0} \lambda^i x_i \Big] \Big|_{\lambda=0}\end{aligned}
 
- where :math:`\lambda` is a grouping parameter. Then, we substitute the
+where :math:`\lambda` is a grouping parameter. Then, we substitute the
 Adomian series, `[eq:ADM1] <#eq:ADM1>`__ and `[eq:ADM2] <#eq:ADM2>`__,
 in `[eq:ADM0] <#eq:ADM0>`__, which gives the solution for :math:`x(t)`
 as:
@@ -1459,7 +1450,7 @@ form:
    \label{eq:HAM1}
    N[x(t)] = 0\end{aligned}
 
- where :math:`N` is a nonlinear operator, :math:`t` denotes time, and
+where :math:`N` is a nonlinear operator, :math:`t` denotes time, and
 :math:`x(t)` is an unknown variable. Let :math:`x_0(t)` denote an
 initial guess of the exact solution :math:`x(t)`, and :math:`L` denote
 an auxiliary linear operator with the property
@@ -1491,7 +1482,7 @@ family of equations, the so-called zero-order deformation equation
    \label{eq:HAM4} 
    (1-q)L[\phi(t;q) -x_0(t)] = q c H(t)N[\phi(t;q)]\end{aligned}
 
- where :math:`\phi(t;q)` is the solution which depends on the initial
+where :math:`\phi(t;q)` is the solution which depends on the initial
 guess :math:`x_{0}(t)`, the auxiliary function :math:`H(t)`, the
 auxiliary parameter :math:`c`, and the embedding parameter :math:`q`
 :math:`\in` :math:`[0,1]`. Due to these parameters (e.g., the parameter
@@ -1529,7 +1520,7 @@ as follows:
    \label{eq:HAM9} 
    \phi(t;q) = x_0(t) + \sum_{i=1}^{\infty} x_{i}q^i\end{aligned}
 
- assuming that :math:`x_{i}` exists and is defined as
+assuming that :math:`x_{i}` exists and is defined as
 
 .. math::
 
@@ -1561,7 +1552,7 @@ deformation equation
    \label{eq:HAM12} 
    L[x_i(t) - \mathcal{X}_ix_{i-1}(t)] = cR_i(t)\end{aligned}
 
- where :math:`\mathcal{X}_i` is defined by
+where :math:`\mathcal{X}_i` is defined by
 
 .. math::
 
@@ -1571,7 +1562,7 @@ deformation equation
    1, \quad i > 1
    \end{cases}\end{aligned}
 
- and :math:`R_i(t)` is defined as
+and :math:`R_i(t)` is defined as
 
 .. math::
 
@@ -1662,7 +1653,7 @@ derivation of a few terms for turbine and generator as follows:
       \label{eq:4terms}
       \phi(t;q) = T_{m} = T_{m,0} + T_{m,1}q + T_{m,2}q^2 + T_{m,3}q^3 \end{aligned}
 
-    where :math:`T_{m,0} = T_{m}(t_{i-1})` in the interval
+   where :math:`T_{m,0} = T_{m}(t_{i-1})` in the interval
    [:math:`t_{i-1},t_i`].
 
    :math:`Step` 4: The :math:`m`\ th order deformation can be formed for
@@ -1694,7 +1685,7 @@ derivation of a few terms for turbine and generator as follows:
       \begin{aligned}
       L[T_{m,1}-T_{m,0}]  = h  \Big[ \dot{T}_{m,0} + \frac{1}{T_{ch}}T_{m,0} - \frac{1}{T_{ch}}P_{sv,0} \Big] \end{aligned}
 
-    On integrating and substituting :math:`\dot{T}_{m,0} = 0`,
+   On integrating and substituting :math:`\dot{T}_{m,0} = 0`,
 
    .. math::
 
@@ -1799,7 +1790,7 @@ derivation of a few terms for turbine and generator as follows:
       \begin{aligned}
       L[E^{\text{dum}}_{1}-E^{\text{dum}}_{0}]  = h  \Big[ \dot{E}^{\text{dum}}_{0} + \frac{1}{T_{dum}}E^{\text{dum}}_{0} + \frac{1}{T_{dum}}i_q X_{qs,0}^{''} - \frac{1}{T_{dum}}i_q X_{ds,0}^{''} \Big] \end{aligned}
 
-    On integrating and substituting
+   On integrating and substituting
    :math:`\dot{E}^{\text{dum}}_{0} = 0`,
 
    .. math::
@@ -1862,7 +1853,7 @@ derivation of a few terms for turbine and generator as follows:
       \begin{aligned}
       L[E^{\text{dum}}_{3}-E^{\text{dum}}_{2}]  = h \Big[ \dot{E}^{\text{dum}}_{2} + \frac{1}{T_{dum}}E^{\text{dum}}_{2} + \frac{1}{T_{dum}}i_qX_{qs,2}^{''} - \frac{1}{T_{dum}}i_qX_{ds,2}^{''} \Big]\end{aligned}
 
-    On integrating,
+   On integrating,
 
    .. math::
 
@@ -1960,7 +1951,7 @@ Validation of Parareal Algorithm
 Results with the New England 10-Generator 39-Bus System
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Fig. `[fig:ne] <#fig:ne>`__ shows simulation results of Parareal
+Fig. :numref:`fig-nedelta`_:numref:`fig-neslip` shows simulation results of Parareal
 algorithm for the :math:`10s` simulation with the New England system.
 This analysis uses 10 sub-intervals for the coarse operators in each
 processor, and the true solution is obtained using the standard
@@ -1972,56 +1963,28 @@ with all three coarse operators. We have checked this convergence for
 other variables and disturbances to validate the convergence of Parareal
 algorithm.
 
-.. raw:: latex
+.. _fig-nedelta:
+.. figure:: _static/ne_delta.png
 
-   \centering
-
-.. raw:: latex
-
-   \captionsetup[subfigure]{justification=centering}
-
-.. raw:: latex
-
-   \subfloat[Rotor Angle at Bus 1]{
-           \includegraphics[scale=0.32]{ne_delta}
-           \label{fig:ne_delta}
-       }
-
-.. raw:: latex
-
-   \subfloat[Slip Speed at Bus 1]{
-           \includegraphics[scale=0.32]{ne_slip}
-           \label{fig:ne_slip} 
-       }
+.. _fig-neslip:
+.. figure:: _static/ne_slip.png
 
 Results with the Polish System, 327-Generator 2383-Bus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To further evaluate the performance of the Parareal algorithm, we have
 considered the large Polish system. The simulation setup is the same as
-the one used in Section `7.1.1 <#sec:7.1.1>`__. Fig.
+the one used in Section `7.1.1 <#sec:7.1.1>`__. Fig. :numref:`fig-pdelta`_:numref:`fig-pslip`
 `[fig:p] <#fig:p>`__ shows the convergence of Parareal algorithm for the
 :math:`10s` simulation. Similarly, we have also checked this convergence
 for other variables and disturbances to validate the convergence of
 Parareal algorithm for the Polish system.
 
-.. raw:: latex
+.. _fig-pdelta:
+.. figure:: _static/p_delta.png
 
-   \centering
-
-.. raw:: latex
-
-   \subfloat[Rotor Angle at Bus 1]{
-           \includegraphics[scale=0.32]{p_delta}
-           \label{fig:p_delta}
-       }
-
-.. raw:: latex
-
-   \subfloat[Slip Speed at Bus 1]{
-           \includegraphics[scale=0.32]{p_slip}
-           \label{fig:p_slip}  
-       }
+.. _fig-pslip:
+.. figure:: _static/p_slip.png
 
 Acknowledgments
 ===============
