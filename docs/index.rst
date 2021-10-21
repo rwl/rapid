@@ -1897,11 +1897,6 @@ have ignored coupling variables among devices.
 
 .. raw:: latex
 
-   \centering
-
-.. raw:: latex
-
-   \resizebox{0.9\textwidth}{!}{%
            \begin{tabular}{|c|c|c|}
                \hline
                \multicolumn{1}{|c|}{\multirow{2}{*}{Terms}} & \multicolumn{2}{c|}{Method }  \\ \cline{2-3} 
@@ -1910,7 +1905,6 @@ have ignored coupling variables among devices.
                \multirow{1}{*}{$P_{sv,1}$} & $\frac{1}{T_{sv}} \Big(-P_{sv,0} + P_{c} - \frac{\omega_{0}}{R_D} \Big) \Delta t $ & $ h\frac{1}{T_{sv}} \big( P_{sv,0} - P_c + \frac{\omega_0}{R_D}  \big)  \Delta t $  \\ \hline
                \multirow{1}{*}{$P_{sv,2}$} & $ \frac{1}{T_{sv}} \frac{1}{2} \Big(-P_{sv,1} - \frac{\omega_{1}}{R_D} \Big) \Delta t $ & $ (1+h)P_{sv,1} +  h \frac{1}{T_{sv}}\frac{1}{2}(P_{sv,1} + \frac{\omega_{1}}{R_D}) \Delta t $  \\ \hline
            \end{tabular}
-       }
 
 [tab:comparison]
 
